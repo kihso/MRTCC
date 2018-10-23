@@ -1,0 +1,82 @@
+%implements s53_b0_kiylb_Enable "C"
+
+%function Enable(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+B_benchmark_no_taylor_T *_rtB;
+P_benchmark_no_taylor_T *_rtP;
+%closefile localVarDecl
+%assign tlcEnableFcnOfS0B0 = OpaqueTLCBlockFcn("Enable", 0, 0, 1, 7)
+%assign tlcEnableFcnOfS23B0 = OpaqueTLCBlockFcn("Enable", 23, 0, 1, 7)
+%assign tlcEnableFcnOfS34B0 = OpaqueTLCBlockFcn("Enable", 34, 0, 1, 7)
+%assign tlcEnableFcnOfS36B0 = OpaqueTLCBlockFcn("Enable", 36, 0, 1, 7)
+%assign tlcEnableFcnOfS37B0 = OpaqueTLCBlockFcn("Enable", 37, 0, 1, 7)
+%assign tlcEnableFcnOfS38B0 = OpaqueTLCBlockFcn("Enable", 38, 0, 1, 7)
+%assign tlcEnableFcnOfS39B0 = OpaqueTLCBlockFcn("Enable", 39, 0, 1, 7)
+%assign tlcEnableFcnOfS40B0 = OpaqueTLCBlockFcn("Enable", 40, 0, 1, 7)
+%assign tlcEnableFcnOfS41B0 = OpaqueTLCBlockFcn("Enable", 41, 0, 1, 7)
+%assign tlcEnableFcnOfS42B0 = OpaqueTLCBlockFcn("Enable", 42, 0, 1, 7)
+%assign tlcEnableFcnOfS43B0 = OpaqueTLCBlockFcn("Enable", 43, 0, 1, 7)
+%assign tlcEnableFcnOfS35B0 = OpaqueTLCBlockFcn("Enable", 35, 0, 1, 7)
+%assign tlcEnableFcnOfS1B0 = OpaqueTLCBlockFcn("Enable", 1, 0, 1, 7)
+%assign tlcEnableFcnOfS24B0 = OpaqueTLCBlockFcn("Enable", 24, 0, 1, 7)
+%assign tlcEnableFcnOfS25B0 = OpaqueTLCBlockFcn("Enable", 25, 0, 1, 7)
+%assign tlcEnableFcnOfS26B0 = OpaqueTLCBlockFcn("Enable", 26, 0, 1, 7)
+%assign tlcEnableFcnOfS27B0 = OpaqueTLCBlockFcn("Enable", 27, 0, 1, 7)
+%assign tlcEnableFcnOfS28B0 = OpaqueTLCBlockFcn("Enable", 28, 0, 1, 7)
+%assign tlcEnableFcnOfS29B0 = OpaqueTLCBlockFcn("Enable", 29, 0, 1, 7)
+%assign tlcEnableFcnOfS30B0 = OpaqueTLCBlockFcn("Enable", 30, 0, 1, 7)
+%assign tlcEnableFcnOfS31B0 = OpaqueTLCBlockFcn("Enable", 31, 0, 1, 7)
+%assign tlcEnableFcnOfS32B0 = OpaqueTLCBlockFcn("Enable", 32, 0, 1, 7)
+%assign tlcEnableFcnOfS33B0 = OpaqueTLCBlockFcn("Enable", 33, 0, 1, 7)
+_rtP = %<(SLibCG_SE(SLibGetParamStructPtr()))>;
+_rtB = %<(SLibCG_SE(SLibGetBlockIOStructPtr()))>;
+%<tlcEnableFcnOfS0B0>\
+%<tlcEnableFcnOfS23B0>\
+%<tlcEnableFcnOfS34B0>\
+%<tlcEnableFcnOfS36B0>\
+%<tlcEnableFcnOfS37B0>\
+%<tlcEnableFcnOfS38B0>\
+%<tlcEnableFcnOfS39B0>\
+%<tlcEnableFcnOfS40B0>\
+%<tlcEnableFcnOfS41B0>\
+%<tlcEnableFcnOfS42B0>\
+%<tlcEnableFcnOfS43B0>\
+%<tlcEnableFcnOfS35B0>\
+%<tlcEnableFcnOfS1B0>\
+%<tlcEnableFcnOfS24B0>\
+%<tlcEnableFcnOfS25B0>\
+%<tlcEnableFcnOfS26B0>\
+%<tlcEnableFcnOfS27B0>\
+%<tlcEnableFcnOfS28B0>\
+%<tlcEnableFcnOfS29B0>\
+%<tlcEnableFcnOfS30B0>\
+%<tlcEnableFcnOfS31B0>\
+%<tlcEnableFcnOfS32B0>\
+%<tlcEnableFcnOfS33B0>\
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[1].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Enable", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Enable"))
+%<SLibCG_AccessArg(1, 7, 0)>
+%endif
+%if SLibCG_ArgAccessed(1, 7, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Enable", rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Enable"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface))
+%<SLibCG_UndoAccessArg(1, 7, 0)>
+%endif
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Enable(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(1, 7, 0)
+%<comma>%<tSimStructType> * const %<tSimStruct>\
+%assign comma = ", "
+%endif
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(1, 7, fcnProtoType)>
+%<LibSetSystemField(system, "CachedEnableLocalVars", localVarDecl)>
+%endfunction

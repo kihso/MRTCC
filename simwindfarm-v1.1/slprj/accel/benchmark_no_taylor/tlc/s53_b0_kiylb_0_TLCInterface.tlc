@@ -1,0 +1,74 @@
+%implements s53_b0_kiylb_0_TLCInterface "C"
+
+%function getInputAddr_3_0_0_2_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_AccessArg(0 ,2, 3)>
+
+%return "&rtu_P_dem"
+%endfunction
+
+%function getInput_3_0_0_2_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_AccessArg(0 ,2, 3)>
+
+%return "rtu_P_dem"
+%endfunction
+
+%function getInputAddr_3_0_0_2_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCGIRAccessLocalVar(712, 2)> %% B_3_1_0
+
+%return "&B_3_1_0"
+%endfunction
+
+%function getInput_3_0_0_2_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCGIRAccessLocalVar(712, 2)> %% B_3_1_0
+
+%return "B_3_1_0"
+%endfunction
+
+%function getOutputAddr_3_0_0_2_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCGIRAccessLocalVar(713, 2)> %% B_3_2_0
+
+%return "&B_3_2_0"
+%endfunction
+
+%function getOutput_3_0_0_2_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCGIRAccessLocalVar(713, 2)> %% B_3_2_0
+
+%return "B_3_2_0"
+%endfunction
+
+%function getParamAddr_3_0_0_2_1_1191(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_AccessArg(0 ,2, 6)>
+
+%return "&localP->P_6"
+%endfunction
+
+%function getParam_3_0_0_2_1_1191(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_AccessArg(0 ,2, 6)>
+
+%return "localP->P_6"
+%endfunction
+
+%function getParamAddr_3_0_0_2_1_1192(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_AccessArg(0 ,2, 6)>
+
+%return "&localP->P_7"
+%endfunction
+
+%function getParam_3_0_0_2_1_1192(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_AccessArg(0 ,2, 6)>
+
+%return "localP->P_7"
+%endfunction
+
+%function getParamAddr_3_0_0_2_1_1193(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_AccessArg(0 ,2, 6)>
+
+%return "&localP->P_8"
+%endfunction
+
+%function getParam_3_0_0_2_1_1193(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCG_AccessArg(0 ,2, 6)>
+
+%return "localP->P_8"
+%endfunction
+

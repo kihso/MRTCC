@@ -1,0 +1,122 @@
+%implements s53_b0_kiylb_0_Outputs "C"
+
+%function Outputs(block, system) Output
+%<SLibCGIRAccessLocalVar(713, 2)> %% B_3_2_0
+%<SLibCGIRAccessLocalVar(712, 2)> %% B_3_1_0
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+real_T rateLimiterRate;
+%closefile localVarDecl
+%assign _modelSS = ""
+
+%assign tlcOutputsFcnOfS3B0 = OpaqueTLCBlockFcn("Outputs", 3, 0, 0, 2)
+if (%<(LibIsMajorTimeStep())>) {
+    if (rtu_Enable) {
+        if (!localDW->Pitchcontroller_MODE) {
+            if (%<(SLibCG_SE(LibGetTaskTime(2)))> != %<(SLibCG_SE(RTMGet("TStart")))>) {
+                %<(RTMSetSolverNeedsReset())>;
+            }
+%<SLibCGIRSetStatesDisabled(44, 57, 0)>\
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "SystemReset",2)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Reset",3,0)
+%<SLibCG_AccessArg(0 ,2, 0)>
+%endif
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Reset",3,1)
+%<SLibCG_AccessArg(0 ,2, 5)>
+%endif
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Reset",3,2)
+%<SLibCG_AccessArg(0 ,2, 6)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Reset", ["%<tSimStruct>", "localDW", "localP"], 3, 0, 5, 2, 7, 3)>\
+%endif
+            localDW->Pitchcontroller_MODE = true;
+        }
+    } else {
+        if (localDW->Pitchcontroller_MODE) {
+            %<(RTMSetSolverNeedsReset())>;
+%<SLibCGIRSetStatesDisabled(44, 57, 1)>\
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Disable",2)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Disable",3,0)
+%<SLibCG_AccessArg(0 ,2, 0)>
+%endif
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Disable",3,1)
+%<SLibCG_AccessArg(0 ,2, 4)>
+%endif
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Disable",3,2)
+%<SLibCG_AccessArg(0 ,2, 5)>
+%endif
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Disable",3,3)
+%<SLibCG_AccessArg(0 ,2, 6)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Disable", ["%<tSimStruct>", "localB", "localDW", "localP"], 3, 0, 15, 2, 7, 3)>\
+%endif
+        }
+    }
+}
+if (localDW->Pitchcontroller_MODE) {
+    B_3_1_0 = localDW->IntegerDelay_DSTATE;
+%<tlcOutputsFcnOfS3B0>\
+    localB->B_3_4_0 = localP->P_9 * rtu_w_gen_diff / B_3_2_0;
+    localB->B_3_10_0 = (localP->P_10 * rtu_w_gen_diff / B_3_2_0 + localDW->DiscreteTimeIntegrator_DSTATE) * localP->P_11;
+    if (localB->B_3_10_0 > localP->P_12) {
+        localB->B_3_10_0 = localP->P_12;
+    } else {
+        if (localB->B_3_10_0 < localP->P_13) {
+            localB->B_3_10_0 = localP->P_13;
+        }
+    }
+    rateLimiterRate = localB->B_3_10_0 - localDW->PrevY;
+    if (rateLimiterRate > localP->P_14) {
+        localB->B_3_10_0 = localDW->PrevY + localP->P_14;
+    } else {
+        if (rateLimiterRate < localP->P_15) {
+            localB->B_3_10_0 = localDW->PrevY + localP->P_15;
+        }
+    }
+    localDW->PrevY = localB->B_3_10_0;
+    if (%<(LibIsMajorTimeStep())>) {
+        srUpdateBC(localDW->Pitchcontroller_SubsysRanBC);
+    }
+}
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[0].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Output", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Output"))
+%<SLibCG_AccessArg(0, 2, 0)>
+%endif
+%if SLibCG_ArgAccessed(0, 2, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Output", rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Output"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface))
+%<SLibCG_UndoAccessArg(0, 2, 0)>
+%endif
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void benchmark_no_taylor_Pitchcontroller(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(0, 2, 0)
+%<comma>%<tSimStructType> * const %<tSimStruct>\
+%assign comma = ", "
+%endif
+%<comma>boolean_T rtu_Enable\
+%assign comma = ", "
+%<comma>real_T rtu_w_gen_diff\
+%assign comma = ", "
+%if SLibCG_ArgAccessed(0, 2, 3)
+%<comma>real_T rtu_P_dem\
+%assign comma = ", "
+%endif
+%<comma>B_Pitchcontroller_benchmark_no_taylor_T *localB\
+%assign comma = ", "
+%<comma>DW_Pitchcontroller_benchmark_no_taylor_T *localDW\
+%assign comma = ", "
+%<comma>P_Pitchcontroller_benchmark_no_taylor_T *localP\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 2, fcnProtoType)>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction

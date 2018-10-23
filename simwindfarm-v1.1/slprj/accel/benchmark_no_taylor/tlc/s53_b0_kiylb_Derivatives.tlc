@@ -1,0 +1,222 @@
+%implements s53_b0_kiylb_Derivatives "C"
+
+%function Derivatives(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+B_benchmark_no_taylor_T *_rtB;
+P_benchmark_no_taylor_T *_rtP;
+X_benchmark_no_taylor_T *_rtX;
+XDis_benchmark_no_taylor_T *_rtXdis;
+XDot_benchmark_no_taylor_T *_rtXdot;
+DW_benchmark_no_taylor_T *_rtDW;
+%closefile localVarDecl
+%<SLibCG_TrackDW(44)>\
+_rtDW = %<(SLibCG_SE(SLibGetDWorkStructPtr()))>;
+%<SLibCG_TrackContStatesDerivative(44)>\
+_rtXdot = %<(SLibCG_SE(SLibGetContStatesDerivativeStructPtr()))>;
+%<SLibCG_TrackContStatesDisabled(44)>\
+_rtXdis = %<(SLibCG_SE(SLibGetContStatesDisabledStructPtr()))>;
+%<SLibCG_TrackContStates(44)>\
+_rtX = %<(SLibCG_SE(SLibGetContStatesStructPtr()))>;
+%<SLibCG_TrackParam(44)>\
+_rtP = %<(SLibCG_SE(SLibGetParamStructPtr()))>;
+%<SLibCG_TrackBlockIO(44)>\
+_rtB = %<(SLibCG_SE(SLibGetBlockIOStructPtr()))>;
+/* 0: INTG_NORMAL     1: INTG_LEAVING_UPPER_SAT  2: INTG_LEAVING_LOWER_SAT */
+/* 3: INTG_UPPER_SAT  4: INTG_LOWER_SAT */
+if ((_rtDW->Integrator_MODE != 3) && (_rtDW->Integrator_MODE != 4)) {
+    _rtXdot->Integrator_CSTATE = _rtB->B_53_422_0;
+    _rtXdis->Integrator_CSTATE = false;
+} else {
+    /* in saturation */
+    _rtXdot->Integrator_CSTATE = 0.0;
+    if ((_rtDW->Integrator_MODE == 3) || (_rtDW->Integrator_MODE == 4)) {
+        _rtXdis->Integrator_CSTATE = true;
+    }
+}
+_rtXdot->TorqueIntegrator_CSTATE = _rtB->B_53_504_0;
+_rtXdot->generatorint_CSTATE = _rtB->B_53_497_0;
+_rtXdot->TorqueIntegrator_CSTATE_h = _rtB->B_53_616_0;
+_rtXdot->generatorint_CSTATE_h = _rtB->B_53_609_0;
+_rtXdot->TorqueIntegrator_CSTATE_o = _rtB->B_53_672_0;
+_rtXdot->generatorint_CSTATE_b = _rtB->B_53_665_0;
+_rtXdot->TorqueIntegrator_CSTATE_p = _rtB->B_53_728_0;
+_rtXdot->generatorint_CSTATE_bf = _rtB->B_53_721_0;
+_rtXdot->TorqueIntegrator_CSTATE_f = _rtB->B_53_784_0;
+_rtXdot->generatorint_CSTATE_a = _rtB->B_53_777_0;
+_rtXdot->TorqueIntegrator_CSTATE_j = _rtB->B_53_840_0;
+_rtXdot->generatorint_CSTATE_g = _rtB->B_53_833_0;
+_rtXdot->TorqueIntegrator_CSTATE_i = _rtB->B_53_896_0;
+_rtXdot->generatorint_CSTATE_i = _rtB->B_53_889_0;
+_rtXdot->TorqueIntegrator_CSTATE_oh = _rtB->B_53_952_0;
+_rtXdot->generatorint_CSTATE_l = _rtB->B_53_945_0;
+_rtXdot->TorqueIntegrator_CSTATE_n = _rtB->B_53_1008_0;
+_rtXdot->generatorint_CSTATE_bt = _rtB->B_53_1001_0;
+_rtXdot->TorqueIntegrator_CSTATE_nc = _rtB->B_53_560_0;
+_rtXdot->generatorint_CSTATE_am = _rtB->B_53_553_0;
+_rtXdot->Integrator_CSTATE_a = _rtB->B_53_506_0;
+_rtXdot->Tower_CSTATE[0] = 0.0;
+_rtXdot->Tower_CSTATE_p[0] = 0.0;
+_rtXdot->Tower_CSTATE_d[0] = 0.0;
+_rtXdot->Tower_CSTATE_i[0] = 0.0;
+_rtXdot->Tower_CSTATE_pr[0] = 0.0;
+_rtXdot->Tower_CSTATE_iw[0] = 0.0;
+_rtXdot->Tower_CSTATE_b[0] = 0.0;
+_rtXdot->Tower_CSTATE_f[0] = 0.0;
+_rtXdot->Tower_CSTATE_m[0] = 0.0;
+_rtXdot->Tower_CSTATE_c[0] = 0.0;
+_rtXdot->Tower_CSTATE[1] = 0.0;
+_rtXdot->Tower_CSTATE_p[1] = 0.0;
+_rtXdot->Tower_CSTATE_d[1] = 0.0;
+_rtXdot->Tower_CSTATE_i[1] = 0.0;
+_rtXdot->Tower_CSTATE_pr[1] = 0.0;
+_rtXdot->Tower_CSTATE_iw[1] = 0.0;
+_rtXdot->Tower_CSTATE_b[1] = 0.0;
+_rtXdot->Tower_CSTATE_f[1] = 0.0;
+_rtXdot->Tower_CSTATE_m[1] = 0.0;
+_rtXdot->Tower_CSTATE_c[1] = 0.0;
+_rtXdot->Tower_CSTATE[0] += _rtP->P_227[0] * _rtX->Tower_CSTATE[0];
+_rtXdot->Tower_CSTATE[0] += _rtP->P_227[1] * _rtX->Tower_CSTATE[1];
+_rtXdot->Tower_CSTATE[1] += _rtP->P_227[2] * _rtX->Tower_CSTATE[0];
+_rtXdot->Tower_CSTATE[0] += _rtP->P_228 * _rtB->B_53_467_0;
+_rtXdot->rotorint_CSTATE = _rtB->B_53_499_0;
+_rtXdot->Integrator_CSTATE_p = _rtB->B_53_618_0;
+_rtXdot->Tower_CSTATE_p[0] += _rtP->P_240[0] * _rtX->Tower_CSTATE_p[0];
+_rtXdot->Tower_CSTATE_p[0] += _rtP->P_240[1] * _rtX->Tower_CSTATE_p[1];
+_rtXdot->Tower_CSTATE_p[1] += _rtP->P_240[2] * _rtX->Tower_CSTATE_p[0];
+_rtXdot->Tower_CSTATE_p[0] += _rtP->P_241 * _rtB->B_53_579_0;
+_rtXdot->rotorint_CSTATE_f = _rtB->B_53_611_0;
+_rtXdot->Integrator_CSTATE_m = _rtB->B_53_674_0;
+_rtXdot->Tower_CSTATE_d[0] += _rtP->P_253[0] * _rtX->Tower_CSTATE_d[0];
+_rtXdot->Tower_CSTATE_d[0] += _rtP->P_253[1] * _rtX->Tower_CSTATE_d[1];
+_rtXdot->Tower_CSTATE_d[1] += _rtP->P_253[2] * _rtX->Tower_CSTATE_d[0];
+_rtXdot->Tower_CSTATE_d[0] += _rtP->P_254 * _rtB->B_53_635_0;
+_rtXdot->rotorint_CSTATE_a = _rtB->B_53_667_0;
+_rtXdot->Integrator_CSTATE_i = _rtB->B_53_730_0;
+_rtXdot->Tower_CSTATE_i[0] += _rtP->P_266[0] * _rtX->Tower_CSTATE_i[0];
+_rtXdot->Tower_CSTATE_i[0] += _rtP->P_266[1] * _rtX->Tower_CSTATE_i[1];
+_rtXdot->Tower_CSTATE_i[1] += _rtP->P_266[2] * _rtX->Tower_CSTATE_i[0];
+_rtXdot->Tower_CSTATE_i[0] += _rtP->P_267 * _rtB->B_53_691_0;
+_rtXdot->rotorint_CSTATE_d = _rtB->B_53_723_0;
+_rtXdot->Integrator_CSTATE_pq = _rtB->B_53_786_0;
+_rtXdot->Tower_CSTATE_pr[0] += _rtP->P_279[0] * _rtX->Tower_CSTATE_pr[0];
+_rtXdot->Tower_CSTATE_pr[0] += _rtP->P_279[1] * _rtX->Tower_CSTATE_pr[1];
+_rtXdot->Tower_CSTATE_pr[1] += _rtP->P_279[2] * _rtX->Tower_CSTATE_pr[0];
+_rtXdot->Tower_CSTATE_pr[0] += _rtP->P_280 * _rtB->B_53_747_0;
+_rtXdot->rotorint_CSTATE_k = _rtB->B_53_779_0;
+_rtXdot->Integrator_CSTATE_h = _rtB->B_53_842_0;
+_rtXdot->Tower_CSTATE_iw[0] += _rtP->P_292[0] * _rtX->Tower_CSTATE_iw[0];
+_rtXdot->Tower_CSTATE_iw[0] += _rtP->P_292[1] * _rtX->Tower_CSTATE_iw[1];
+_rtXdot->Tower_CSTATE_iw[1] += _rtP->P_292[2] * _rtX->Tower_CSTATE_iw[0];
+_rtXdot->Tower_CSTATE_iw[0] += _rtP->P_293 * _rtB->B_53_803_0;
+_rtXdot->rotorint_CSTATE_e = _rtB->B_53_835_0;
+_rtXdot->Integrator_CSTATE_e = _rtB->B_53_898_0;
+_rtXdot->Tower_CSTATE_b[0] += _rtP->P_305[0] * _rtX->Tower_CSTATE_b[0];
+_rtXdot->Tower_CSTATE_b[0] += _rtP->P_305[1] * _rtX->Tower_CSTATE_b[1];
+_rtXdot->Tower_CSTATE_b[1] += _rtP->P_305[2] * _rtX->Tower_CSTATE_b[0];
+_rtXdot->Tower_CSTATE_b[0] += _rtP->P_306 * _rtB->B_53_859_0;
+_rtXdot->rotorint_CSTATE_fa = _rtB->B_53_891_0;
+_rtXdot->Integrator_CSTATE_md = _rtB->B_53_954_0;
+_rtXdot->Tower_CSTATE_f[0] += _rtP->P_318[0] * _rtX->Tower_CSTATE_f[0];
+_rtXdot->Tower_CSTATE_f[0] += _rtP->P_318[1] * _rtX->Tower_CSTATE_f[1];
+_rtXdot->Tower_CSTATE_f[1] += _rtP->P_318[2] * _rtX->Tower_CSTATE_f[0];
+_rtXdot->Tower_CSTATE_f[0] += _rtP->P_319 * _rtB->B_53_915_0;
+_rtXdot->rotorint_CSTATE_o = _rtB->B_53_947_0;
+_rtXdot->Integrator_CSTATE_o = _rtB->B_53_1010_0;
+_rtXdot->Tower_CSTATE_m[0] += _rtP->P_331[0] * _rtX->Tower_CSTATE_m[0];
+_rtXdot->Tower_CSTATE_m[0] += _rtP->P_331[1] * _rtX->Tower_CSTATE_m[1];
+_rtXdot->Tower_CSTATE_m[1] += _rtP->P_331[2] * _rtX->Tower_CSTATE_m[0];
+_rtXdot->Tower_CSTATE_m[0] += _rtP->P_332 * _rtB->B_53_971_0;
+_rtXdot->rotorint_CSTATE_n = _rtB->B_53_1003_0;
+_rtXdot->Integrator_CSTATE_j = _rtB->B_53_562_0;
+_rtXdot->Tower_CSTATE_c[0] += _rtP->P_344[0] * _rtX->Tower_CSTATE_c[0];
+_rtXdot->Tower_CSTATE_c[0] += _rtP->P_344[1] * _rtX->Tower_CSTATE_c[1];
+_rtXdot->Tower_CSTATE_c[1] += _rtP->P_344[2] * _rtX->Tower_CSTATE_c[0];
+_rtXdot->Tower_CSTATE_c[0] += _rtP->P_345 * _rtB->B_53_523_0;
+_rtXdot->rotorint_CSTATE_ai = _rtB->B_53_555_0;
+_rtXdot->torsionint_CSTATE = _rtB->B_53_492_0;
+_rtXdot->torsionint_CSTATE_a = _rtB->B_53_604_0;
+_rtXdot->torsionint_CSTATE_j = _rtB->B_53_660_0;
+_rtXdot->torsionint_CSTATE_aj = _rtB->B_53_716_0;
+_rtXdot->torsionint_CSTATE_n = _rtB->B_53_772_0;
+_rtXdot->torsionint_CSTATE_jv = _rtB->B_53_828_0;
+_rtXdot->torsionint_CSTATE_a4 = _rtB->B_53_884_0;
+_rtXdot->torsionint_CSTATE_k = _rtB->B_53_940_0;
+_rtXdot->torsionint_CSTATE_c = _rtB->B_53_996_0;
+_rtXdot->torsionint_CSTATE_j2 = _rtB->B_53_548_0;
+_rtXdot->Hydraulictimeconstant_CSTATE = 0.0;
+_rtXdot->Hydraulictimeconstant_CSTATE += _rtP->P_424 * _rtX->Hydraulictimeconstant_CSTATE;
+_rtXdot->Hydraulictimeconstant_CSTATE += _rtB->B_53_505_0;
+_rtXdot->genIntegrator_CSTATE = _rtB->B_53_517_0;
+_rtXdot->genIntegrator1_CSTATE = _rtB->B_53_518_0;
+_rtXdot->Hydraulictimeconstant_CSTATE_c = 0.0;
+_rtXdot->Hydraulictimeconstant_CSTATE_c += _rtP->P_469 * _rtX->Hydraulictimeconstant_CSTATE_c;
+_rtXdot->Hydraulictimeconstant_CSTATE_c += _rtB->B_53_561_0;
+_rtXdot->genIntegrator_CSTATE_e = _rtB->B_53_573_0;
+_rtXdot->genIntegrator1_CSTATE_d = _rtB->B_53_574_0;
+_rtXdot->Hydraulictimeconstant_CSTATE_d = 0.0;
+_rtXdot->Hydraulictimeconstant_CSTATE_d += _rtP->P_514 * _rtX->Hydraulictimeconstant_CSTATE_d;
+_rtXdot->Hydraulictimeconstant_CSTATE_d += _rtB->B_53_617_0;
+_rtXdot->genIntegrator_CSTATE_i = _rtB->B_53_629_0;
+_rtXdot->genIntegrator1_CSTATE_g = _rtB->B_53_630_0;
+_rtXdot->Hydraulictimeconstant_CSTATE_h = 0.0;
+_rtXdot->Hydraulictimeconstant_CSTATE_h += _rtP->P_559 * _rtX->Hydraulictimeconstant_CSTATE_h;
+_rtXdot->Hydraulictimeconstant_CSTATE_h += _rtB->B_53_673_0;
+_rtXdot->genIntegrator_CSTATE_j = _rtB->B_53_685_0;
+_rtXdot->genIntegrator1_CSTATE_f = _rtB->B_53_686_0;
+_rtXdot->Hydraulictimeconstant_CSTATE_g = 0.0;
+_rtXdot->Hydraulictimeconstant_CSTATE_g += _rtP->P_604 * _rtX->Hydraulictimeconstant_CSTATE_g;
+_rtXdot->Hydraulictimeconstant_CSTATE_g += _rtB->B_53_729_0;
+_rtXdot->genIntegrator_CSTATE_d = _rtB->B_53_741_0;
+_rtXdot->genIntegrator1_CSTATE_j = _rtB->B_53_742_0;
+_rtXdot->Hydraulictimeconstant_CSTATE_j = 0.0;
+_rtXdot->Hydraulictimeconstant_CSTATE_j += _rtP->P_649 * _rtX->Hydraulictimeconstant_CSTATE_j;
+_rtXdot->Hydraulictimeconstant_CSTATE_j += _rtB->B_53_785_0;
+_rtXdot->genIntegrator_CSTATE_a = _rtB->B_53_797_0;
+_rtXdot->genIntegrator1_CSTATE_p = _rtB->B_53_798_0;
+_rtXdot->Hydraulictimeconstant_CSTATE_k = 0.0;
+_rtXdot->Hydraulictimeconstant_CSTATE_k += _rtP->P_694 * _rtX->Hydraulictimeconstant_CSTATE_k;
+_rtXdot->Hydraulictimeconstant_CSTATE_k += _rtB->B_53_841_0;
+_rtXdot->genIntegrator_CSTATE_m = _rtB->B_53_853_0;
+_rtXdot->genIntegrator1_CSTATE_m = _rtB->B_53_854_0;
+_rtXdot->Hydraulictimeconstant_CSTATE_f = 0.0;
+_rtXdot->Hydraulictimeconstant_CSTATE_f += _rtP->P_739 * _rtX->Hydraulictimeconstant_CSTATE_f;
+_rtXdot->Hydraulictimeconstant_CSTATE_f += _rtB->B_53_897_0;
+_rtXdot->genIntegrator_CSTATE_ae = _rtB->B_53_909_0;
+_rtXdot->genIntegrator1_CSTATE_h = _rtB->B_53_910_0;
+_rtXdot->Hydraulictimeconstant_CSTATE_m = 0.0;
+_rtXdot->Hydraulictimeconstant_CSTATE_m += _rtP->P_784 * _rtX->Hydraulictimeconstant_CSTATE_m;
+_rtXdot->Hydraulictimeconstant_CSTATE_m += _rtB->B_53_953_0;
+_rtXdot->genIntegrator_CSTATE_ju = _rtB->B_53_965_0;
+_rtXdot->genIntegrator1_CSTATE_o = _rtB->B_53_966_0;
+_rtXdot->Hydraulictimeconstant_CSTATE_e = 0.0;
+_rtXdot->Hydraulictimeconstant_CSTATE_e += _rtP->P_829 * _rtX->Hydraulictimeconstant_CSTATE_e;
+_rtXdot->Hydraulictimeconstant_CSTATE_e += _rtB->B_53_1009_0;
+_rtXdot->genIntegrator_CSTATE_mc = _rtB->B_53_1021_0;
+_rtXdot->genIntegrator1_CSTATE_gl = _rtB->B_53_1022_0;
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[1].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Derivative", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Derivative"))
+%<SLibCG_AccessArg(1, 4, 0)>
+%endif
+%if SLibCG_ArgAccessed(1, 4, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Derivative", rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Derivative"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface))
+%<SLibCG_UndoAccessArg(1, 4, 0)>
+%endif
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Derivatives(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(1, 4, 0)
+%<comma>%<tSimStructType> * const %<tSimStruct>\
+%assign comma = ", "
+%endif
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(1, 4, fcnProtoType)>
+%<LibSetSystemField(system, "CachedDerivativeLocalVars", localVarDecl)>
+%endfunction

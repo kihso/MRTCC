@@ -1,0 +1,784 @@
+%implements s53_b0_kiylb_Update "C"
+
+%function UpdateForTID(block, system, tid) Output
+%if tid == 0
+%assign ::GlobalCurrentTID = 0
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+int32_T idxDelay;
+B_benchmark_no_taylor_T *_rtB;
+P_benchmark_no_taylor_T *_rtP;
+X_benchmark_no_taylor_T *_rtX;
+DW_benchmark_no_taylor_T *_rtDW;
+%closefile localVarDecl
+%assign _modelSS = ""
+
+%assign tlcUpdateFcnOfS44B0 = OpaqueTLCBlockFcn("Update", 44, 0, 1, 3)
+%assign tlcUpdateFcnOfS44B1 = OpaqueTLCBlockFcn("Update", 44, 1, 1, 3)
+%assign tlcUpdateFcnOfS44B2 = OpaqueTLCBlockFcn("Update", 44, 2, 1, 3)
+%assign tlcUpdateFcnOfS44B3 = OpaqueTLCBlockFcn("Update", 44, 3, 1, 3)
+%assign tlcUpdateFcnOfS44B4 = OpaqueTLCBlockFcn("Update", 44, 4, 1, 3)
+%assign tlcUpdateFcnOfS44B5 = OpaqueTLCBlockFcn("Update", 44, 5, 1, 3)
+%assign tlcUpdateFcnOfS44B6 = OpaqueTLCBlockFcn("Update", 44, 6, 1, 3)
+%assign tlcUpdateFcnOfS44B7 = OpaqueTLCBlockFcn("Update", 44, 7, 1, 3)
+%assign tlcUpdateFcnOfS44B8 = OpaqueTLCBlockFcn("Update", 44, 8, 1, 3)
+%assign tlcUpdateFcnOfS44B9 = OpaqueTLCBlockFcn("Update", 44, 9, 1, 3)
+%assign tlcUpdateFcnOfS44B10 = OpaqueTLCBlockFcn("Update", 44, 10, 1, 3)
+%assign tlcUpdateFcnOfS44B49 = OpaqueTLCBlockFcn("Update", 44, 49, 1, 3)
+%assign tlcUpdateFcnOfS44B50 = OpaqueTLCBlockFcn("Update", 44, 50, 1, 3)
+%assign tlcUpdateFcnOfS44B55 = OpaqueTLCBlockFcn("Update", 44, 55, 1, 3)
+%assign tlcUpdateFcnOfS44B60 = OpaqueTLCBlockFcn("Update", 44, 60, 1, 3)
+%assign tlcUpdateFcnOfS44B62 = OpaqueTLCBlockFcn("Update", 44, 62, 1, 3)
+%assign tlcUpdateFcnOfS44B67 = OpaqueTLCBlockFcn("Update", 44, 67, 1, 3)
+%assign tlcUpdateFcnOfS44B69 = OpaqueTLCBlockFcn("Update", 44, 69, 1, 3)
+%assign tlcUpdateFcnOfS44B74 = OpaqueTLCBlockFcn("Update", 44, 74, 1, 3)
+%assign tlcUpdateFcnOfS44B76 = OpaqueTLCBlockFcn("Update", 44, 76, 1, 3)
+%assign tlcUpdateFcnOfS44B81 = OpaqueTLCBlockFcn("Update", 44, 81, 1, 3)
+%assign tlcUpdateFcnOfS44B83 = OpaqueTLCBlockFcn("Update", 44, 83, 1, 3)
+%assign tlcUpdateFcnOfS44B88 = OpaqueTLCBlockFcn("Update", 44, 88, 1, 3)
+%assign tlcUpdateFcnOfS44B90 = OpaqueTLCBlockFcn("Update", 44, 90, 1, 3)
+%assign tlcUpdateFcnOfS44B95 = OpaqueTLCBlockFcn("Update", 44, 95, 1, 3)
+%assign tlcUpdateFcnOfS44B97 = OpaqueTLCBlockFcn("Update", 44, 97, 1, 3)
+%assign tlcUpdateFcnOfS44B102 = OpaqueTLCBlockFcn("Update", 44, 102, 1, 3)
+%assign tlcUpdateFcnOfS44B104 = OpaqueTLCBlockFcn("Update", 44, 104, 1, 3)
+%assign tlcUpdateFcnOfS44B109 = OpaqueTLCBlockFcn("Update", 44, 109, 1, 3)
+%assign tlcUpdateFcnOfS44B111 = OpaqueTLCBlockFcn("Update", 44, 111, 1, 3)
+%assign tlcUpdateFcnOfS44B116 = OpaqueTLCBlockFcn("Update", 44, 116, 1, 3)
+%assign tlcUpdateFcnOfS44B118 = OpaqueTLCBlockFcn("Update", 44, 118, 1, 3)
+%assign tlcUpdateFcnOfS44B123 = OpaqueTLCBlockFcn("Update", 44, 123, 1, 3)
+%<SLibCG_TrackDW(44)>\
+_rtDW = %<(SLibCG_SE(SLibGetDWorkStructPtr()))>;
+%<SLibCG_TrackContStates(44)>\
+_rtX = %<(SLibCG_SE(SLibGetContStatesStructPtr()))>;
+%<SLibCG_TrackParam(44)>\
+_rtP = %<(SLibCG_SE(SLibGetParamStructPtr()))>;
+%<SLibCG_TrackBlockIO(44)>\
+_rtB = %<(SLibCG_SE(SLibGetBlockIOStructPtr()))>;
+%<tlcUpdateFcnOfS44B0>\
+%<tlcUpdateFcnOfS44B1>\
+%<tlcUpdateFcnOfS44B2>\
+%<tlcUpdateFcnOfS44B3>\
+%<tlcUpdateFcnOfS44B4>\
+%<tlcUpdateFcnOfS44B5>\
+%<tlcUpdateFcnOfS44B6>\
+%<tlcUpdateFcnOfS44B7>\
+%<tlcUpdateFcnOfS44B8>\
+%<tlcUpdateFcnOfS44B9>\
+%<tlcUpdateFcnOfS44B10>\
+/* 0: INTG_NORMAL     1: INTG_LEAVING_UPPER_SAT  2: INTG_LEAVING_LOWER_SAT */
+/* 3: INTG_UPPER_SAT  4: INTG_LOWER_SAT */
+if (_rtX->Integrator_CSTATE == _rtP->P_45) {
+    switch (_rtDW->Integrator_MODE) {
+      case 3:
+        if (_rtB->B_53_422_0 < 0.0) {
+            %<(RTMSetSolverNeedsReset())>;
+            _rtDW->Integrator_MODE = 1;
+        }
+        break;
+      case 1:
+        if (_rtB->B_53_422_0 >= 0.0) {
+            _rtDW->Integrator_MODE = 3;
+            %<(RTMSetSolverNeedsReset())>;
+        }
+        break;
+      default:
+        %<(RTMSetSolverNeedsReset())>;
+        if (_rtB->B_53_422_0 < 0.0) {
+            _rtDW->Integrator_MODE = 1;
+        } else {
+            _rtDW->Integrator_MODE = 3;
+        }
+        break;
+    }
+} else if (_rtX->Integrator_CSTATE == _rtP->P_46) {
+    switch (_rtDW->Integrator_MODE) {
+      case 4:
+        if (_rtB->B_53_422_0 > 0.0) {
+            %<(RTMSetSolverNeedsReset())>;
+            _rtDW->Integrator_MODE = 2;
+        }
+        break;
+      case 2:
+        if (_rtB->B_53_422_0 <= 0.0) {
+            _rtDW->Integrator_MODE = 4;
+            %<(RTMSetSolverNeedsReset())>;
+        }
+        break;
+      default:
+        %<(RTMSetSolverNeedsReset())>;
+        if (_rtB->B_53_422_0 > 0.0) {
+            _rtDW->Integrator_MODE = 2;
+        } else {
+            _rtDW->Integrator_MODE = 4;
+        }
+        break;
+    }
+} else {
+    _rtDW->Integrator_MODE = 0;
+}
+if (%<(SLibCGIRIsSampleHit(3, 44))>) {
+    _rtDW->Output_DSTATE = _rtB->B_53_1060_0;
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay2_DSTATE[(uint32_T)idxDelay] = _rtDW->wcDelay2_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wcDelay2_DSTATE[39] = _rtB->B_33_0_1[1];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wcDelay3_DSTATE[(uint32_T)idxDelay] = _rtDW->wcDelay3_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wcDelay3_DSTATE[79] = _rtB->B_33_0_1[2];
+    for (idxDelay = 0; idxDelay < 119; idxDelay++) {
+        _rtDW->wcDelay4_DSTATE[(uint32_T)idxDelay] = _rtDW->wcDelay4_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wcDelay4_DSTATE[119] = _rtB->B_33_0_1[3];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wcDelay5_DSTATE[(uint32_T)idxDelay] = _rtDW->wcDelay5_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wcDelay5_DSTATE[19] = _rtB->B_33_0_1[4];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wcDelay6_DSTATE[(uint32_T)idxDelay] = _rtDW->wcDelay6_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wcDelay6_DSTATE[59] = _rtB->B_33_0_1[5];
+    for (idxDelay = 0; idxDelay < 99; idxDelay++) {
+        _rtDW->wcDelay7_DSTATE[(uint32_T)idxDelay] = _rtDW->wcDelay7_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wcDelay7_DSTATE[99] = _rtB->B_33_0_1[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay8_DSTATE[(uint32_T)idxDelay] = _rtDW->wcDelay8_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wcDelay8_DSTATE[39] = _rtB->B_33_0_1[7];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wcDelay9_DSTATE[(uint32_T)idxDelay] = _rtDW->wcDelay9_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wcDelay9_DSTATE[79] = _rtB->B_33_0_1[8];
+    for (idxDelay = 0; idxDelay < 119; idxDelay++) {
+        _rtDW->wcDelay10_DSTATE[(uint32_T)idxDelay] = _rtDW->wcDelay10_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wcDelay10_DSTATE[119] = _rtB->B_33_0_1[9];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay3_DSTATE_g[(uint32_T)idxDelay] = _rtDW->wcDelay3_DSTATE_g[idxDelay + 1U];
+    }
+    _rtDW->wcDelay3_DSTATE_g[39] = _rtB->B_35_0_1[2];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wcDelay4_DSTATE_j[(uint32_T)idxDelay] = _rtDW->wcDelay4_DSTATE_j[idxDelay + 1U];
+    }
+    _rtDW->wcDelay4_DSTATE_j[79] = _rtB->B_35_0_1[3];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wcDelay6_DSTATE_i[(uint32_T)idxDelay] = _rtDW->wcDelay6_DSTATE_i[idxDelay + 1U];
+    }
+    _rtDW->wcDelay6_DSTATE_i[19] = _rtB->B_35_0_1[5];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wcDelay7_DSTATE_a[(uint32_T)idxDelay] = _rtDW->wcDelay7_DSTATE_a[idxDelay + 1U];
+    }
+    _rtDW->wcDelay7_DSTATE_a[59] = _rtB->B_35_0_1[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay9_DSTATE_c[(uint32_T)idxDelay] = _rtDW->wcDelay9_DSTATE_c[idxDelay + 1U];
+    }
+    _rtDW->wcDelay9_DSTATE_c[39] = _rtB->B_35_0_1[8];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wcDelay10_DSTATE_e[(uint32_T)idxDelay] = _rtDW->wcDelay10_DSTATE_e[idxDelay + 1U];
+    }
+    _rtDW->wcDelay10_DSTATE_e[79] = _rtB->B_35_0_1[9];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay4_DSTATE_g[(uint32_T)idxDelay] = _rtDW->wcDelay4_DSTATE_g[idxDelay + 1U];
+    }
+    _rtDW->wcDelay4_DSTATE_g[39] = _rtB->B_36_0_1[3];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wcDelay7_DSTATE_j[(uint32_T)idxDelay] = _rtDW->wcDelay7_DSTATE_j[idxDelay + 1U];
+    }
+    _rtDW->wcDelay7_DSTATE_j[19] = _rtB->B_36_0_1[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay10_DSTATE_f[(uint32_T)idxDelay] = _rtDW->wcDelay10_DSTATE_f[idxDelay + 1U];
+    }
+    _rtDW->wcDelay10_DSTATE_f[39] = _rtB->B_36_0_1[9];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wcDelay2_DSTATE_e[(uint32_T)idxDelay] = _rtDW->wcDelay2_DSTATE_e[idxDelay + 1U];
+    }
+    _rtDW->wcDelay2_DSTATE_e[19] = _rtB->B_38_0_1[1];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wcDelay3_DSTATE_gu[(uint32_T)idxDelay] = _rtDW->wcDelay3_DSTATE_gu[idxDelay + 1U];
+    }
+    _rtDW->wcDelay3_DSTATE_gu[59] = _rtB->B_38_0_1[2];
+    for (idxDelay = 0; idxDelay < 99; idxDelay++) {
+        _rtDW->wcDelay4_DSTATE_e[(uint32_T)idxDelay] = _rtDW->wcDelay4_DSTATE_e[idxDelay + 1U];
+    }
+    _rtDW->wcDelay4_DSTATE_e[99] = _rtB->B_38_0_1[3];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay6_DSTATE_o[(uint32_T)idxDelay] = _rtDW->wcDelay6_DSTATE_o[idxDelay + 1U];
+    }
+    _rtDW->wcDelay6_DSTATE_o[39] = _rtB->B_38_0_1[5];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wcDelay7_DSTATE_az[(uint32_T)idxDelay] = _rtDW->wcDelay7_DSTATE_az[idxDelay + 1U];
+    }
+    _rtDW->wcDelay7_DSTATE_az[79] = _rtB->B_38_0_1[6];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wcDelay8_DSTATE_f[(uint32_T)idxDelay] = _rtDW->wcDelay8_DSTATE_f[idxDelay + 1U];
+    }
+    _rtDW->wcDelay8_DSTATE_f[19] = _rtB->B_38_0_1[7];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wcDelay9_DSTATE_n[(uint32_T)idxDelay] = _rtDW->wcDelay9_DSTATE_n[idxDelay + 1U];
+    }
+    _rtDW->wcDelay9_DSTATE_n[59] = _rtB->B_38_0_1[8];
+    for (idxDelay = 0; idxDelay < 99; idxDelay++) {
+        _rtDW->wcDelay10_DSTATE_h[(uint32_T)idxDelay] = _rtDW->wcDelay10_DSTATE_h[idxDelay + 1U];
+    }
+    _rtDW->wcDelay10_DSTATE_h[99] = _rtB->B_38_0_1[9];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wcDelay3_DSTATE_p[(uint32_T)idxDelay] = _rtDW->wcDelay3_DSTATE_p[idxDelay + 1U];
+    }
+    _rtDW->wcDelay3_DSTATE_p[19] = _rtB->B_39_0_1[2];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wcDelay4_DSTATE_n[(uint32_T)idxDelay] = _rtDW->wcDelay4_DSTATE_n[idxDelay + 1U];
+    }
+    _rtDW->wcDelay4_DSTATE_n[59] = _rtB->B_39_0_1[3];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay7_DSTATE_l[(uint32_T)idxDelay] = _rtDW->wcDelay7_DSTATE_l[idxDelay + 1U];
+    }
+    _rtDW->wcDelay7_DSTATE_l[39] = _rtB->B_39_0_1[6];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wcDelay9_DSTATE_h[(uint32_T)idxDelay] = _rtDW->wcDelay9_DSTATE_h[idxDelay + 1U];
+    }
+    _rtDW->wcDelay9_DSTATE_h[19] = _rtB->B_39_0_1[8];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wcDelay10_DSTATE_o[(uint32_T)idxDelay] = _rtDW->wcDelay10_DSTATE_o[idxDelay + 1U];
+    }
+    _rtDW->wcDelay10_DSTATE_o[59] = _rtB->B_39_0_1[9];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wcDelay4_DSTATE_no[(uint32_T)idxDelay] = _rtDW->wcDelay4_DSTATE_no[idxDelay + 1U];
+        _rtDW->wcDelay10_DSTATE_i[(uint32_T)idxDelay] = _rtDW->wcDelay10_DSTATE_i[idxDelay + 1U];
+    }
+    _rtDW->wcDelay4_DSTATE_no[19] = _rtB->B_40_0_1[3];
+    _rtDW->wcDelay10_DSTATE_i[19] = _rtB->B_40_0_1[9];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay3_DSTATE_i[(uint32_T)idxDelay] = _rtDW->wcDelay3_DSTATE_i[idxDelay + 1U];
+    }
+    _rtDW->wcDelay3_DSTATE_i[39] = _rtB->B_41_0_1[2];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wcDelay4_DSTATE_o[(uint32_T)idxDelay] = _rtDW->wcDelay4_DSTATE_o[idxDelay + 1U];
+    }
+    _rtDW->wcDelay4_DSTATE_o[79] = _rtB->B_41_0_1[3];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wcDelay6_DSTATE_og[(uint32_T)idxDelay] = _rtDW->wcDelay6_DSTATE_og[idxDelay + 1U];
+    }
+    _rtDW->wcDelay6_DSTATE_og[19] = _rtB->B_41_0_1[5];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wcDelay7_DSTATE_an[(uint32_T)idxDelay] = _rtDW->wcDelay7_DSTATE_an[idxDelay + 1U];
+    }
+    _rtDW->wcDelay7_DSTATE_an[59] = _rtB->B_41_0_1[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay9_DSTATE_j[(uint32_T)idxDelay] = _rtDW->wcDelay9_DSTATE_j[idxDelay + 1U];
+    }
+    _rtDW->wcDelay9_DSTATE_j[39] = _rtB->B_41_0_1[8];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wcDelay10_DSTATE_g[(uint32_T)idxDelay] = _rtDW->wcDelay10_DSTATE_g[idxDelay + 1U];
+    }
+    _rtDW->wcDelay10_DSTATE_g[79] = _rtB->B_41_0_1[9];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay4_DSTATE_jo[(uint32_T)idxDelay] = _rtDW->wcDelay4_DSTATE_jo[idxDelay + 1U];
+    }
+    _rtDW->wcDelay4_DSTATE_jo[39] = _rtB->B_42_0_1[3];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wcDelay7_DSTATE_d[(uint32_T)idxDelay] = _rtDW->wcDelay7_DSTATE_d[idxDelay + 1U];
+    }
+    _rtDW->wcDelay7_DSTATE_d[19] = _rtB->B_42_0_1[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wcDelay10_DSTATE_ik[(uint32_T)idxDelay] = _rtDW->wcDelay10_DSTATE_ik[idxDelay + 1U];
+        _rtDW->wdDelay2_DSTATE[(uint32_T)idxDelay] = _rtDW->wdDelay2_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wcDelay10_DSTATE_ik[39] = _rtB->B_42_0_1[9];
+    _rtDW->wdDelay2_DSTATE[39] = _rtB->B_33_0_2[1];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wdDelay3_DSTATE[(uint32_T)idxDelay] = _rtDW->wdDelay3_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wdDelay3_DSTATE[79] = _rtB->B_33_0_2[2];
+    for (idxDelay = 0; idxDelay < 119; idxDelay++) {
+        _rtDW->wdDelay4_DSTATE[(uint32_T)idxDelay] = _rtDW->wdDelay4_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wdDelay4_DSTATE[119] = _rtB->B_33_0_2[3];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wdDelay5_DSTATE[(uint32_T)idxDelay] = _rtDW->wdDelay5_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wdDelay5_DSTATE[19] = _rtB->B_33_0_2[4];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wdDelay6_DSTATE[(uint32_T)idxDelay] = _rtDW->wdDelay6_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wdDelay6_DSTATE[59] = _rtB->B_33_0_2[5];
+    for (idxDelay = 0; idxDelay < 99; idxDelay++) {
+        _rtDW->wdDelay7_DSTATE[(uint32_T)idxDelay] = _rtDW->wdDelay7_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wdDelay7_DSTATE[99] = _rtB->B_33_0_2[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay8_DSTATE[(uint32_T)idxDelay] = _rtDW->wdDelay8_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wdDelay8_DSTATE[39] = _rtB->B_33_0_2[7];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wdDelay9_DSTATE[(uint32_T)idxDelay] = _rtDW->wdDelay9_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wdDelay9_DSTATE[79] = _rtB->B_33_0_2[8];
+    for (idxDelay = 0; idxDelay < 119; idxDelay++) {
+        _rtDW->wdDelay10_DSTATE[(uint32_T)idxDelay] = _rtDW->wdDelay10_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wdDelay10_DSTATE[119] = _rtB->B_33_0_2[9];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay3_DSTATE_g[(uint32_T)idxDelay] = _rtDW->wdDelay3_DSTATE_g[idxDelay + 1U];
+    }
+    _rtDW->wdDelay3_DSTATE_g[39] = _rtB->B_35_0_2[2];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wdDelay4_DSTATE_g[(uint32_T)idxDelay] = _rtDW->wdDelay4_DSTATE_g[idxDelay + 1U];
+    }
+    _rtDW->wdDelay4_DSTATE_g[79] = _rtB->B_35_0_2[3];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wdDelay6_DSTATE_m[(uint32_T)idxDelay] = _rtDW->wdDelay6_DSTATE_m[idxDelay + 1U];
+    }
+    _rtDW->wdDelay6_DSTATE_m[19] = _rtB->B_35_0_2[5];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wdDelay7_DSTATE_n[(uint32_T)idxDelay] = _rtDW->wdDelay7_DSTATE_n[idxDelay + 1U];
+    }
+    _rtDW->wdDelay7_DSTATE_n[59] = _rtB->B_35_0_2[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay9_DSTATE_b[(uint32_T)idxDelay] = _rtDW->wdDelay9_DSTATE_b[idxDelay + 1U];
+    }
+    _rtDW->wdDelay9_DSTATE_b[39] = _rtB->B_35_0_2[8];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wdDelay10_DSTATE_a[(uint32_T)idxDelay] = _rtDW->wdDelay10_DSTATE_a[idxDelay + 1U];
+    }
+    _rtDW->wdDelay10_DSTATE_a[79] = _rtB->B_35_0_2[9];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay4_DSTATE_n[(uint32_T)idxDelay] = _rtDW->wdDelay4_DSTATE_n[idxDelay + 1U];
+    }
+    _rtDW->wdDelay4_DSTATE_n[39] = _rtB->B_36_0_2[3];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wdDelay7_DSTATE_e[(uint32_T)idxDelay] = _rtDW->wdDelay7_DSTATE_e[idxDelay + 1U];
+    }
+    _rtDW->wdDelay7_DSTATE_e[19] = _rtB->B_36_0_2[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay10_DSTATE_a3[(uint32_T)idxDelay] = _rtDW->wdDelay10_DSTATE_a3[idxDelay + 1U];
+    }
+    _rtDW->wdDelay10_DSTATE_a3[39] = _rtB->B_36_0_2[9];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wdDelay2_DSTATE_m[(uint32_T)idxDelay] = _rtDW->wdDelay2_DSTATE_m[idxDelay + 1U];
+    }
+    _rtDW->wdDelay2_DSTATE_m[19] = _rtB->B_38_0_2[1];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wdDelay3_DSTATE_k[(uint32_T)idxDelay] = _rtDW->wdDelay3_DSTATE_k[idxDelay + 1U];
+    }
+    _rtDW->wdDelay3_DSTATE_k[59] = _rtB->B_38_0_2[2];
+    for (idxDelay = 0; idxDelay < 99; idxDelay++) {
+        _rtDW->wdDelay4_DSTATE_nd[(uint32_T)idxDelay] = _rtDW->wdDelay4_DSTATE_nd[idxDelay + 1U];
+    }
+    _rtDW->wdDelay4_DSTATE_nd[99] = _rtB->B_38_0_2[3];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay6_DSTATE_h[(uint32_T)idxDelay] = _rtDW->wdDelay6_DSTATE_h[idxDelay + 1U];
+    }
+    _rtDW->wdDelay6_DSTATE_h[39] = _rtB->B_38_0_2[5];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wdDelay7_DSTATE_h[(uint32_T)idxDelay] = _rtDW->wdDelay7_DSTATE_h[idxDelay + 1U];
+    }
+    _rtDW->wdDelay7_DSTATE_h[79] = _rtB->B_38_0_2[6];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wdDelay8_DSTATE_l[(uint32_T)idxDelay] = _rtDW->wdDelay8_DSTATE_l[idxDelay + 1U];
+    }
+    _rtDW->wdDelay8_DSTATE_l[19] = _rtB->B_38_0_2[7];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wdDelay9_DSTATE_k[(uint32_T)idxDelay] = _rtDW->wdDelay9_DSTATE_k[idxDelay + 1U];
+    }
+    _rtDW->wdDelay9_DSTATE_k[59] = _rtB->B_38_0_2[8];
+    for (idxDelay = 0; idxDelay < 99; idxDelay++) {
+        _rtDW->wdDelay10_DSTATE_i[(uint32_T)idxDelay] = _rtDW->wdDelay10_DSTATE_i[idxDelay + 1U];
+    }
+    _rtDW->wdDelay10_DSTATE_i[99] = _rtB->B_38_0_2[9];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wdDelay3_DSTATE_a[(uint32_T)idxDelay] = _rtDW->wdDelay3_DSTATE_a[idxDelay + 1U];
+    }
+    _rtDW->wdDelay3_DSTATE_a[19] = _rtB->B_39_0_2[2];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wdDelay4_DSTATE_m[(uint32_T)idxDelay] = _rtDW->wdDelay4_DSTATE_m[idxDelay + 1U];
+    }
+    _rtDW->wdDelay4_DSTATE_m[59] = _rtB->B_39_0_2[3];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay7_DSTATE_a[(uint32_T)idxDelay] = _rtDW->wdDelay7_DSTATE_a[idxDelay + 1U];
+    }
+    _rtDW->wdDelay7_DSTATE_a[39] = _rtB->B_39_0_2[6];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wdDelay9_DSTATE_n[(uint32_T)idxDelay] = _rtDW->wdDelay9_DSTATE_n[idxDelay + 1U];
+    }
+    _rtDW->wdDelay9_DSTATE_n[19] = _rtB->B_39_0_2[8];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wdDelay10_DSTATE_aw[(uint32_T)idxDelay] = _rtDW->wdDelay10_DSTATE_aw[idxDelay + 1U];
+    }
+    _rtDW->wdDelay10_DSTATE_aw[59] = _rtB->B_39_0_2[9];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wdDelay4_DSTATE_e[(uint32_T)idxDelay] = _rtDW->wdDelay4_DSTATE_e[idxDelay + 1U];
+        _rtDW->wdDelay10_DSTATE_o[(uint32_T)idxDelay] = _rtDW->wdDelay10_DSTATE_o[idxDelay + 1U];
+    }
+    _rtDW->wdDelay4_DSTATE_e[19] = _rtB->B_40_0_2[3];
+    _rtDW->wdDelay10_DSTATE_o[19] = _rtB->B_40_0_2[9];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay3_DSTATE_j[(uint32_T)idxDelay] = _rtDW->wdDelay3_DSTATE_j[idxDelay + 1U];
+    }
+    _rtDW->wdDelay3_DSTATE_j[39] = _rtB->B_41_0_2[2];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wdDelay4_DSTATE_nw[(uint32_T)idxDelay] = _rtDW->wdDelay4_DSTATE_nw[idxDelay + 1U];
+    }
+    _rtDW->wdDelay4_DSTATE_nw[79] = _rtB->B_41_0_2[3];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wdDelay6_DSTATE_mj[(uint32_T)idxDelay] = _rtDW->wdDelay6_DSTATE_mj[idxDelay + 1U];
+    }
+    _rtDW->wdDelay6_DSTATE_mj[19] = _rtB->B_41_0_2[5];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->wdDelay7_DSTATE_g[(uint32_T)idxDelay] = _rtDW->wdDelay7_DSTATE_g[idxDelay + 1U];
+    }
+    _rtDW->wdDelay7_DSTATE_g[59] = _rtB->B_41_0_2[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay9_DSTATE_m[(uint32_T)idxDelay] = _rtDW->wdDelay9_DSTATE_m[idxDelay + 1U];
+    }
+    _rtDW->wdDelay9_DSTATE_m[39] = _rtB->B_41_0_2[8];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->wdDelay10_DSTATE_e[(uint32_T)idxDelay] = _rtDW->wdDelay10_DSTATE_e[idxDelay + 1U];
+    }
+    _rtDW->wdDelay10_DSTATE_e[79] = _rtB->B_41_0_2[9];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay4_DSTATE_b[(uint32_T)idxDelay] = _rtDW->wdDelay4_DSTATE_b[idxDelay + 1U];
+    }
+    _rtDW->wdDelay4_DSTATE_b[39] = _rtB->B_42_0_2[3];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->wdDelay7_DSTATE_o[(uint32_T)idxDelay] = _rtDW->wdDelay7_DSTATE_o[idxDelay + 1U];
+    }
+    _rtDW->wdDelay7_DSTATE_o[19] = _rtB->B_42_0_2[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->wdDelay10_DSTATE_g[(uint32_T)idxDelay] = _rtDW->wdDelay10_DSTATE_g[idxDelay + 1U];
+        _rtDW->ctDelay2_DSTATE[(uint32_T)idxDelay] = _rtDW->ctDelay2_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->wdDelay10_DSTATE_g[39] = _rtB->B_42_0_2[9];
+    _rtDW->ctDelay2_DSTATE[39] = _rtB->B_53_414_0[0];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->ctDelay3_DSTATE[(uint32_T)idxDelay] = _rtDW->ctDelay3_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->ctDelay3_DSTATE[79] = _rtB->B_53_414_0[0];
+    for (idxDelay = 0; idxDelay < 119; idxDelay++) {
+        _rtDW->ctDelay4_DSTATE[(uint32_T)idxDelay] = _rtDW->ctDelay4_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->ctDelay4_DSTATE[119] = _rtB->B_53_414_0[0];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->ctDelay5_DSTATE[(uint32_T)idxDelay] = _rtDW->ctDelay5_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->ctDelay5_DSTATE[19] = _rtB->B_53_414_0[0];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->ctDelay6_DSTATE[(uint32_T)idxDelay] = _rtDW->ctDelay6_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->ctDelay6_DSTATE[59] = _rtB->B_53_414_0[0];
+    for (idxDelay = 0; idxDelay < 99; idxDelay++) {
+        _rtDW->ctDelay7_DSTATE[(uint32_T)idxDelay] = _rtDW->ctDelay7_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->ctDelay7_DSTATE[99] = _rtB->B_53_414_0[0];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay8_DSTATE[(uint32_T)idxDelay] = _rtDW->ctDelay8_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->ctDelay8_DSTATE[39] = _rtB->B_53_414_0[0];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->ctDelay9_DSTATE[(uint32_T)idxDelay] = _rtDW->ctDelay9_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->ctDelay9_DSTATE[79] = _rtB->B_53_414_0[0];
+    for (idxDelay = 0; idxDelay < 119; idxDelay++) {
+        _rtDW->ctDelay10_DSTATE[(uint32_T)idxDelay] = _rtDW->ctDelay10_DSTATE[idxDelay + 1U];
+    }
+    _rtDW->ctDelay10_DSTATE[119] = _rtB->B_53_414_0[0];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay3_DSTATE_l[(uint32_T)idxDelay] = _rtDW->ctDelay3_DSTATE_l[idxDelay + 1U];
+    }
+    _rtDW->ctDelay3_DSTATE_l[39] = _rtB->B_53_414_0[1];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->ctDelay4_DSTATE_e[(uint32_T)idxDelay] = _rtDW->ctDelay4_DSTATE_e[idxDelay + 1U];
+    }
+    _rtDW->ctDelay4_DSTATE_e[79] = _rtB->B_53_414_0[1];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->ctDelay6_DSTATE_k[(uint32_T)idxDelay] = _rtDW->ctDelay6_DSTATE_k[idxDelay + 1U];
+    }
+    _rtDW->ctDelay6_DSTATE_k[19] = _rtB->B_53_414_0[1];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->ctDelay7_DSTATE_n[(uint32_T)idxDelay] = _rtDW->ctDelay7_DSTATE_n[idxDelay + 1U];
+    }
+    _rtDW->ctDelay7_DSTATE_n[59] = _rtB->B_53_414_0[1];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay9_DSTATE_k[(uint32_T)idxDelay] = _rtDW->ctDelay9_DSTATE_k[idxDelay + 1U];
+    }
+    _rtDW->ctDelay9_DSTATE_k[39] = _rtB->B_53_414_0[1];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->ctDelay10_DSTATE_a[(uint32_T)idxDelay] = _rtDW->ctDelay10_DSTATE_a[idxDelay + 1U];
+    }
+    _rtDW->ctDelay10_DSTATE_a[79] = _rtB->B_53_414_0[1];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay4_DSTATE_er[(uint32_T)idxDelay] = _rtDW->ctDelay4_DSTATE_er[idxDelay + 1U];
+    }
+    _rtDW->ctDelay4_DSTATE_er[39] = _rtB->B_53_414_0[2];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->ctDelay7_DSTATE_j[(uint32_T)idxDelay] = _rtDW->ctDelay7_DSTATE_j[idxDelay + 1U];
+    }
+    _rtDW->ctDelay7_DSTATE_j[19] = _rtB->B_53_414_0[2];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay10_DSTATE_p[(uint32_T)idxDelay] = _rtDW->ctDelay10_DSTATE_p[idxDelay + 1U];
+    }
+    _rtDW->ctDelay10_DSTATE_p[39] = _rtB->B_53_414_0[2];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->ctDelay2_DSTATE_m[(uint32_T)idxDelay] = _rtDW->ctDelay2_DSTATE_m[idxDelay + 1U];
+    }
+    _rtDW->ctDelay2_DSTATE_m[19] = _rtB->B_53_414_0[4];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->ctDelay3_DSTATE_k[(uint32_T)idxDelay] = _rtDW->ctDelay3_DSTATE_k[idxDelay + 1U];
+    }
+    _rtDW->ctDelay3_DSTATE_k[59] = _rtB->B_53_414_0[4];
+    for (idxDelay = 0; idxDelay < 99; idxDelay++) {
+        _rtDW->ctDelay4_DSTATE_o[(uint32_T)idxDelay] = _rtDW->ctDelay4_DSTATE_o[idxDelay + 1U];
+    }
+    _rtDW->ctDelay4_DSTATE_o[99] = _rtB->B_53_414_0[4];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay6_DSTATE_f[(uint32_T)idxDelay] = _rtDW->ctDelay6_DSTATE_f[idxDelay + 1U];
+    }
+    _rtDW->ctDelay6_DSTATE_f[39] = _rtB->B_53_414_0[4];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->ctDelay7_DSTATE_d[(uint32_T)idxDelay] = _rtDW->ctDelay7_DSTATE_d[idxDelay + 1U];
+    }
+    _rtDW->ctDelay7_DSTATE_d[79] = _rtB->B_53_414_0[4];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->ctDelay8_DSTATE_e[(uint32_T)idxDelay] = _rtDW->ctDelay8_DSTATE_e[idxDelay + 1U];
+    }
+    _rtDW->ctDelay8_DSTATE_e[19] = _rtB->B_53_414_0[4];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->ctDelay9_DSTATE_a[(uint32_T)idxDelay] = _rtDW->ctDelay9_DSTATE_a[idxDelay + 1U];
+    }
+    _rtDW->ctDelay9_DSTATE_a[59] = _rtB->B_53_414_0[4];
+    for (idxDelay = 0; idxDelay < 99; idxDelay++) {
+        _rtDW->ctDelay10_DSTATE_d[(uint32_T)idxDelay] = _rtDW->ctDelay10_DSTATE_d[idxDelay + 1U];
+    }
+    _rtDW->ctDelay10_DSTATE_d[99] = _rtB->B_53_414_0[4];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->ctDelay3_DSTATE_j[(uint32_T)idxDelay] = _rtDW->ctDelay3_DSTATE_j[idxDelay + 1U];
+    }
+    _rtDW->ctDelay3_DSTATE_j[19] = _rtB->B_53_414_0[5];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->ctDelay4_DSTATE_c[(uint32_T)idxDelay] = _rtDW->ctDelay4_DSTATE_c[idxDelay + 1U];
+    }
+    _rtDW->ctDelay4_DSTATE_c[59] = _rtB->B_53_414_0[5];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay7_DSTATE_m[(uint32_T)idxDelay] = _rtDW->ctDelay7_DSTATE_m[idxDelay + 1U];
+    }
+    _rtDW->ctDelay7_DSTATE_m[39] = _rtB->B_53_414_0[5];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->ctDelay9_DSTATE_n[(uint32_T)idxDelay] = _rtDW->ctDelay9_DSTATE_n[idxDelay + 1U];
+    }
+    _rtDW->ctDelay9_DSTATE_n[19] = _rtB->B_53_414_0[5];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->ctDelay10_DSTATE_j[(uint32_T)idxDelay] = _rtDW->ctDelay10_DSTATE_j[idxDelay + 1U];
+    }
+    _rtDW->ctDelay10_DSTATE_j[59] = _rtB->B_53_414_0[5];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->ctDelay4_DSTATE_ob[(uint32_T)idxDelay] = _rtDW->ctDelay4_DSTATE_ob[idxDelay + 1U];
+        _rtDW->ctDelay10_DSTATE_d2[(uint32_T)idxDelay] = _rtDW->ctDelay10_DSTATE_d2[idxDelay + 1U];
+    }
+    _rtDW->ctDelay4_DSTATE_ob[19] = _rtB->B_53_414_0[6];
+    _rtDW->ctDelay10_DSTATE_d2[19] = _rtB->B_53_414_0[6];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay3_DSTATE_d[(uint32_T)idxDelay] = _rtDW->ctDelay3_DSTATE_d[idxDelay + 1U];
+    }
+    _rtDW->ctDelay3_DSTATE_d[39] = _rtB->B_53_414_0[7];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->ctDelay4_DSTATE_i[(uint32_T)idxDelay] = _rtDW->ctDelay4_DSTATE_i[idxDelay + 1U];
+    }
+    _rtDW->ctDelay4_DSTATE_i[79] = _rtB->B_53_414_0[7];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->ctDelay6_DSTATE_n[(uint32_T)idxDelay] = _rtDW->ctDelay6_DSTATE_n[idxDelay + 1U];
+    }
+    _rtDW->ctDelay6_DSTATE_n[19] = _rtB->B_53_414_0[7];
+    for (idxDelay = 0; idxDelay < 59; idxDelay++) {
+        _rtDW->ctDelay7_DSTATE_f[(uint32_T)idxDelay] = _rtDW->ctDelay7_DSTATE_f[idxDelay + 1U];
+    }
+    _rtDW->ctDelay7_DSTATE_f[59] = _rtB->B_53_414_0[7];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay9_DSTATE_f[(uint32_T)idxDelay] = _rtDW->ctDelay9_DSTATE_f[idxDelay + 1U];
+    }
+    _rtDW->ctDelay9_DSTATE_f[39] = _rtB->B_53_414_0[7];
+    for (idxDelay = 0; idxDelay < 79; idxDelay++) {
+        _rtDW->ctDelay10_DSTATE_h[(uint32_T)idxDelay] = _rtDW->ctDelay10_DSTATE_h[idxDelay + 1U];
+    }
+    _rtDW->ctDelay10_DSTATE_h[79] = _rtB->B_53_414_0[7];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay4_DSTATE_m[(uint32_T)idxDelay] = _rtDW->ctDelay4_DSTATE_m[idxDelay + 1U];
+    }
+    _rtDW->ctDelay4_DSTATE_m[39] = _rtB->B_53_414_0[8];
+    for (idxDelay = 0; idxDelay < 19; idxDelay++) {
+        _rtDW->ctDelay7_DSTATE_db[(uint32_T)idxDelay] = _rtDW->ctDelay7_DSTATE_db[idxDelay + 1U];
+    }
+    _rtDW->ctDelay7_DSTATE_db[19] = _rtB->B_53_414_0[8];
+    for (idxDelay = 0; idxDelay < 39; idxDelay++) {
+        _rtDW->ctDelay10_DSTATE_b[(uint32_T)idxDelay] = _rtDW->ctDelay10_DSTATE_b[idxDelay + 1U];
+    }
+    _rtDW->ctDelay10_DSTATE_b[39] = _rtB->B_53_414_0[8];
+    _rtDW->Output_DSTATE_g = _rtB->B_53_1068_0;
+    _rtDW->Output_DSTATE_d = _rtB->B_53_1072_0;
+    _rtDW->Output_DSTATE_n = _rtB->B_53_1076_0;
+    _rtDW->Output_DSTATE_h = _rtB->B_53_1080_0;
+    _rtDW->Output_DSTATE_e = _rtB->B_53_1084_0;
+    _rtDW->Output_DSTATE_db = _rtB->B_53_1088_0;
+    _rtDW->Output_DSTATE_o = _rtB->B_53_1092_0;
+    _rtDW->Output_DSTATE_d4 = _rtB->B_53_1096_0;
+    _rtDW->Output_DSTATE_es = _rtB->B_53_1064_0;
+}
+%<tlcUpdateFcnOfS44B49>\
+%<tlcUpdateFcnOfS44B50>\
+if (%<(SLibCGIRIsSampleHit(5, 44))>) {
+    _rtDW->UnitDelay_DSTATE = _rtB->B_1_0_1;
+}
+if (%<(SLibCGIRIsSampleHit(2, 44))>) {
+%<tlcUpdateFcnOfS44B55>\
+    _rtDW->IntegerDelay_DSTATE = _rtB->Pitchcontroller.B_3_10_0;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Update",0)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Update",3,0)
+%<SLibCG_AccessArg(1 ,3, 0)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Update", ["%<tSimStruct>", "&_rtB->Pitchcontroller", "&_rtDW->Pitchcontroller", "(P_Pitchcontroller_benchmark_no_taylor_T *)&_rtP->Pitchcontroller"], 3, 0, 8, 0, 8, 44)>\
+%endif
+}
+%<tlcUpdateFcnOfS44B60>\
+if (%<(SLibCGIRIsSampleHit(2, 44))>) {
+%<tlcUpdateFcnOfS44B62>\
+    _rtDW->IntegerDelay_DSTATE_i = _rtB->Pitchcontroller_n.B_3_10_0;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Update",0)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Update",3,0)
+%<SLibCG_AccessArg(1 ,3, 0)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Update", ["%<tSimStruct>", "&_rtB->Pitchcontroller_n", "&_rtDW->Pitchcontroller_n", "(P_Pitchcontroller_benchmark_no_taylor_T *)&_rtP->Pitchcontroller_n"], 3, 1, 8, 0, 8, 44)>\
+%endif
+}
+%<tlcUpdateFcnOfS44B67>\
+if (%<(SLibCGIRIsSampleHit(2, 44))>) {
+%<tlcUpdateFcnOfS44B69>\
+    _rtDW->IntegerDelay_DSTATE_c = _rtB->Pitchcontroller_a.B_3_10_0;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Update",0)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Update",3,0)
+%<SLibCG_AccessArg(1 ,3, 0)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Update", ["%<tSimStruct>", "&_rtB->Pitchcontroller_a", "&_rtDW->Pitchcontroller_a", "(P_Pitchcontroller_benchmark_no_taylor_T *)&_rtP->Pitchcontroller_a"], 3, 2, 8, 0, 8, 44)>\
+%endif
+}
+%<tlcUpdateFcnOfS44B74>\
+if (%<(SLibCGIRIsSampleHit(2, 44))>) {
+%<tlcUpdateFcnOfS44B76>\
+    _rtDW->IntegerDelay_DSTATE_f = _rtB->Pitchcontroller_i.B_3_10_0;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Update",0)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Update",3,0)
+%<SLibCG_AccessArg(1 ,3, 0)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Update", ["%<tSimStruct>", "&_rtB->Pitchcontroller_i", "&_rtDW->Pitchcontroller_i", "(P_Pitchcontroller_benchmark_no_taylor_T *)&_rtP->Pitchcontroller_i"], 3, 3, 8, 0, 8, 44)>\
+%endif
+}
+%<tlcUpdateFcnOfS44B81>\
+if (%<(SLibCGIRIsSampleHit(2, 44))>) {
+%<tlcUpdateFcnOfS44B83>\
+    _rtDW->IntegerDelay_DSTATE_l = _rtB->Pitchcontroller_e.B_3_10_0;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Update",0)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Update",3,0)
+%<SLibCG_AccessArg(1 ,3, 0)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Update", ["%<tSimStruct>", "&_rtB->Pitchcontroller_e", "&_rtDW->Pitchcontroller_e", "(P_Pitchcontroller_benchmark_no_taylor_T *)&_rtP->Pitchcontroller_e"], 3, 4, 8, 0, 8, 44)>\
+%endif
+}
+%<tlcUpdateFcnOfS44B88>\
+if (%<(SLibCGIRIsSampleHit(2, 44))>) {
+%<tlcUpdateFcnOfS44B90>\
+    _rtDW->IntegerDelay_DSTATE_j = _rtB->Pitchcontroller_p.B_3_10_0;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Update",0)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Update",3,0)
+%<SLibCG_AccessArg(1 ,3, 0)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Update", ["%<tSimStruct>", "&_rtB->Pitchcontroller_p", "&_rtDW->Pitchcontroller_p", "(P_Pitchcontroller_benchmark_no_taylor_T *)&_rtP->Pitchcontroller_p"], 3, 5, 8, 0, 8, 44)>\
+%endif
+}
+%<tlcUpdateFcnOfS44B95>\
+if (%<(SLibCGIRIsSampleHit(2, 44))>) {
+%<tlcUpdateFcnOfS44B97>\
+    _rtDW->IntegerDelay_DSTATE_n = _rtB->Pitchcontroller_f.B_3_10_0;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Update",0)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Update",3,0)
+%<SLibCG_AccessArg(1 ,3, 0)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Update", ["%<tSimStruct>", "&_rtB->Pitchcontroller_f", "&_rtDW->Pitchcontroller_f", "(P_Pitchcontroller_benchmark_no_taylor_T *)&_rtP->Pitchcontroller_f"], 3, 6, 8, 0, 8, 44)>\
+%endif
+}
+%<tlcUpdateFcnOfS44B102>\
+if (%<(SLibCGIRIsSampleHit(2, 44))>) {
+%<tlcUpdateFcnOfS44B104>\
+    _rtDW->IntegerDelay_DSTATE_e = _rtB->Pitchcontroller_nb.B_3_10_0;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Update",0)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Update",3,0)
+%<SLibCG_AccessArg(1 ,3, 0)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Update", ["%<tSimStruct>", "&_rtB->Pitchcontroller_nb", "&_rtDW->Pitchcontroller_nb", "(P_Pitchcontroller_benchmark_no_taylor_T *)&_rtP->Pitchcontroller_nb"], 3, 7, 8, 0, 8, 44)>\
+%endif
+}
+%<tlcUpdateFcnOfS44B109>\
+if (%<(SLibCGIRIsSampleHit(2, 44))>) {
+%<tlcUpdateFcnOfS44B111>\
+    _rtDW->IntegerDelay_DSTATE_id = _rtB->Pitchcontroller_a2.B_3_10_0;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Update",0)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Update",3,0)
+%<SLibCG_AccessArg(1 ,3, 0)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Update", ["%<tSimStruct>", "&_rtB->Pitchcontroller_a2", "&_rtDW->Pitchcontroller_a2", "(P_Pitchcontroller_benchmark_no_taylor_T *)&_rtP->Pitchcontroller_a2"], 3, 8, 8, 0, 8, 44)>\
+%endif
+}
+%<tlcUpdateFcnOfS44B116>\
+if (%<(SLibCGIRIsSampleHit(2, 44))>) {
+%<tlcUpdateFcnOfS44B118>\
+    _rtDW->IntegerDelay_DSTATE_fg = _rtB->Pitchcontroller_c.B_3_10_0;
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[3], "Update",0)
+%if SLibCG_SystemFcnArgAccessed("benchmark_no_taylor_Pitchcontroller_Update",3,0)
+%<SLibCG_AccessArg(1 ,3, 0)>
+%endif
+
+%<SLibCGIRGenReusableSysCall("benchmark_no_taylor_Pitchcontroller_Update", ["%<tSimStruct>", "&_rtB->Pitchcontroller_c", "&_rtDW->Pitchcontroller_c", "(P_Pitchcontroller_benchmark_no_taylor_T *)&_rtP->Pitchcontroller_c"], 3, 9, 8, 0, 8, 44)>\
+%endif
+}
+%<tlcUpdateFcnOfS44B123>\
+if (%<(SLibCGIRIsSampleHit(3, 44))>) {
+    _rtDW->Output_DSTATE_ej = _rtB->B_53_1032_0;
+}
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[1].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Update", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Update"))
+%<SLibCG_AccessArg(1, 3, 0)>
+%endif
+%if SLibCG_ArgAccessed(1, 3, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Update", rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "Update"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface))
+%<SLibCG_UndoAccessArg(1, 3, 0)>
+%endif
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Update(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(1, 3, 0)
+%<comma>%<tSimStructType> * const %<tSimStruct>\
+%assign comma = ", "
+%endif
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(1, 3, fcnProtoType)>
+%<LibSetSystemField(system, "CachedUpdateLocalVars", localVarDecl)>
+%assign ::GlobalCurrentTID = []
+%endif
+%if tid == 6
+%assign ::GlobalCurrentTID = 6
+%assign ::GlobalCurrentTID = []
+%endif
+%endfunction

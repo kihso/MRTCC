@@ -1,0 +1,73 @@
+%implements s53_b0_kiylb_ZeroCrossings "C"
+
+%function ZeroCrossings(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+boolean_T anyStateSaturated;
+B_benchmark_no_taylor_T *_rtB;
+P_benchmark_no_taylor_T *_rtP;
+X_benchmark_no_taylor_T *_rtX;
+ZCV_benchmark_no_taylor_T *_rtZCSV;
+DW_benchmark_no_taylor_T *_rtDW;
+%closefile localVarDecl
+%assign tlcZeroCrossingsFcnOfS44B15 = OpaqueTLCBlockFcn("ZeroCrossings", 44, 15, 1, 6)
+%<SLibCG_TrackDW(44)>\
+_rtDW = %<(SLibCG_SE(SLibGetDWorkStructPtr()))>;
+%<SLibCG_TrackZCSV(44)>\
+_rtZCSV = %<(SLibCG_SE(SLibGetZCSignalValueStrucPtr()))>;
+%<SLibCG_TrackContStates(44)>\
+_rtX = %<(SLibCG_SE(SLibGetContStatesStructPtr()))>;
+%<SLibCG_TrackParam(44)>\
+_rtP = %<(SLibCG_SE(SLibGetParamStructPtr()))>;
+%<SLibCG_TrackBlockIO(44)>\
+_rtB = %<(SLibCG_SE(SLibGetBlockIOStructPtr()))>;
+/* zero crossings for entering into limited region */
+/* 0: INTG_NORMAL     1: INTG_LEAVING_UPPER_SAT  2: INTG_LEAVING_LOWER_SAT */
+/* 3: INTG_UPPER_SAT  4: INTG_LOWER_SAT */
+if ((_rtDW->Integrator_MODE == 1) && (_rtX->Integrator_CSTATE >= _rtP->P_45)) {
+    _rtZCSV->Integrator_IntgUpLimit_ZC = 0.0;
+} else {
+    _rtZCSV->Integrator_IntgUpLimit_ZC = _rtX->Integrator_CSTATE - _rtP->P_45;
+}
+if ((_rtDW->Integrator_MODE == 2) && (_rtX->Integrator_CSTATE <= _rtP->P_46)) {
+    _rtZCSV->Integrator_IntgLoLimit_ZC = 0.0;
+} else {
+    _rtZCSV->Integrator_IntgLoLimit_ZC = _rtX->Integrator_CSTATE - _rtP->P_46;
+}
+/* zero crossings for leaving limited region */
+anyStateSaturated = false;
+if ((_rtDW->Integrator_MODE == 3) || (_rtDW->Integrator_MODE == 4)) {
+    anyStateSaturated = true;
+}
+if (anyStateSaturated) {
+    _rtZCSV->Integrator_LeaveSaturate_ZC = _rtB->B_53_422_0;
+} else {
+    _rtZCSV->Integrator_LeaveSaturate_ZC = 0.0;
+}
+%<tlcZeroCrossingsFcnOfS44B15>\
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[1].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("ZeroCrossing", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "ZeroCrossing"))
+%<SLibCG_AccessArg(1, 6, 0)>
+%endif
+%if SLibCG_ArgAccessed(1, 6, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "ZeroCrossing", rtmArgSys.CurrentTID, SLibSystemFcnPeriodicRateGrouping(rtmArgSys, "ZeroCrossing"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface))
+%<SLibCG_UndoAccessArg(1, 6, 0)>
+%endif
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void ZeroCrossings(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(1, 6, 0)
+%<comma>%<tSimStructType> * const %<tSimStruct>\
+%assign comma = ", "
+%endif
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(1, 6, fcnProtoType)>
+%<LibSetSystemField(system, "CachedZeroCrossingLocalVars", localVarDecl)>
+%endfunction

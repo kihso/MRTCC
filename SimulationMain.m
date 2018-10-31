@@ -74,7 +74,7 @@ if UseSimulink == 1
     Tsim = 200;
     Ts = 0.0125;                        % TK: Variabel time step used in Simulink
     Tau = 0.01;
-    sim('NREL_20MW_4TTAddOn_test.slx');
+    sim('NREL_20MW_4TT.slx');
     x = stateVec.data(:,1:NDOF);
     xdot = stateVec.data(:,NDOF+1:2*NDOF);
     T = stateVec.Time;

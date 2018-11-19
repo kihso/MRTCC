@@ -12,6 +12,7 @@
 WindVec = [4 6 8 10 12 14 16 18 20];
 MRTCTs= 0.0125;                             % Standard NREL5MW controller sampling time
 SimName = 'VestasControl';
+%SimName = 'YOUR_SIMULATION_NAME';
 %SimName = 'Baseline';
 
 % Simulation configurations
@@ -46,7 +47,7 @@ kgain = [0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1;
          1   1   0.5 1   3.6 5   5   1   1];
 
     
-for k=6%:size(WindVec,2)
+for k=1:size(WindVec,2)
 AddExtPitch= 1;                 % 1 for add (gain in WT block)
 Kgain = 1;                      % scale feedback signal
 

@@ -36,7 +36,7 @@ Lt2=par.Lt2;
 % Simulink Control Parameters
 Px_UseExternalTower = 1;
 Px_UseExternalControl = 0;
-Px_AddExternalDeltaPitch = 0;
+Px_AddExternalDeltaPitch = 1;
 % Px_disableThetaControl = 0;
 
 % Vestas - Controller gains

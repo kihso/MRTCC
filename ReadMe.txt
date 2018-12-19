@@ -8,6 +8,8 @@ To run this simulation environment:
 	3c. Change Px_UseExternalTower=1 to use multi-rotor structure tower else use standard monopile tower.
 3. After running model, results is generated here: "..\mrtcc\results\YOUR_SIMULATION_NAME" based on your controller.
 4. Run AnimationMain.m to animate benchmark vs. baseline or just baseline.
-5. This is developed in Matlab 2016b.
+5. After baseline and new designed benchmark controller is simulated the results can be compared with PostProcessMain. It generated a table called ResCompare which contains the ratios between baseline and benchmark parameters.
+
+This is developed in Matlab 2016b.
 
 Any questions: kihso@vestas.com

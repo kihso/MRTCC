@@ -7,7 +7,7 @@ figure(1);
 set(1,'Units', 'Normalized', 'OuterPosition', [0 0 1 1])
 
 % Plot and Animate for Specific wind speed.
-AniPlotWS = 'WS14';
+AniPlotWS = 'WS12';
 BaselineName = 'Baseline';
 BenchMarkName = 'VestasControl';
 

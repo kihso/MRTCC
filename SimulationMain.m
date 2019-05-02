@@ -40,14 +40,12 @@ Px_AddExternalDeltaPitch = 1;
 % Px_disableThetaControl = 0;
 
 % Vestas - Controller gains
-        % 4   6   8  10  12  14  16   18  20 m/s
 kgain = [0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1;
-         3   3   1   1   1   3   3   3   3;
+         3   1   0.5 1   5   3   3   3   3;
          0.1 0   0.1 0.1 0.1 0.1 0.1 0.1 0.1;
          1   1   0.5 1   3.6 5   5   1   1];
-
     
-for k=5%1:size(WindVec,2)
+for k=1:size(WindVec,2)
 AddExtPitch= 1;                 % 1 for add (gain in WT block)
 Kgain = 1;                      % scale feedback signal
 

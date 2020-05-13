@@ -11,9 +11,9 @@
 %% Parameters TK part begin
 WindVec = [4 6 8 10 12 14 16 18 20];
 MRTCTs= 0.0125;                             % Standard NREL5MW controller sampling time
-SimName = 'VestasControl';
+% SimName = 'VestasControl';
 %SimName = 'YOUR_SIMULATION_NAME';
-%SimName = 'Baseline';
+SimName = 'VestasControl_Spectral';
 
 % Simulation configurations
 UseSimulink = 1;
@@ -48,8 +48,9 @@ kgain = [0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1;
 for k=1:size(WindVec,2)
 AddExtPitch= 1;                 % 1 for add (gain in WT block)
 Kgain = 1;                      % scale feedback signal
-
 RadSec2Rpm = 30/pi;
+fprintf('Simulated windspeed is %s m/s \n', num2str(WindVec(k)));
+
 k1 = kgain(1,k); k2 = kgain(2,k); k3 = kgain(3,k); k4 = kgain(4,k);
 
 

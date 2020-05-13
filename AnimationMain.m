@@ -2,16 +2,17 @@
 ScaleAnimationParam = 10; % Used to scale the movement of the animation
 ShowAnimation = 1;
 AnimateBenchMark = 1;
-viewpar = 0;
+viewpar = 1; % Side angle view
+% viewpar = 0; % Skew angle view
+
 
 figure(1);
 set(1,'Units', 'Normalized', 'OuterPosition', [0 0 1 1])
 
 % Plot and Animate for Specific wind speed.
-AniPlotWS = 'WS12';
+AniPlotWS = 'WS16';
 BaselineName = 'Baseline';
 BenchMarkName = 'VestasControl';
-
 
 BaselineStruct = load(strcat('.\Results\',BaselineName,'\',AniPlotWS,'\','TurbineData.mat'));
 wg1_bl = BaselineStruct.Turbine_Output.Data(:,9);
@@ -22,7 +23,7 @@ x_bl = BaselineStruct.x;
 T_bl = BaselineStruct.T;
 
 if AnimateBenchMark == 1
-BenchmarkStruct = load(strcat('.\Results\',BenchMarkName,'\',AniPlotWS,'\','TurbineData.mat'))
+BenchmarkStruct = load(strcat('.\Results\',BenchMarkName,'\',AniPlotWS,'\','TurbineData.mat'));
 wg1_bm = BenchmarkStruct.Turbine_Output.Data(:,9);
 wg2_bm = BenchmarkStruct.Turbine_Output.Data(:,10);
 wg3_bm = BenchmarkStruct.Turbine_Output.Data(:,11);
@@ -55,7 +56,7 @@ if ShowAnimation == 1
     xlim([-150 150])
     ylim([-150 150])    
     zlim([-300 1])   
-    title('Baseline','fontsize',32)
+    title(BaselineName,'fontsize',32)
     hold off; drawnow update
 
 	if AnimateBenchMark == 1
@@ -71,7 +72,7 @@ if ShowAnimation == 1
     xlim([-150 150])
     ylim([-150 150])    
     zlim([-300 1])   
-    title('Benchmark','fontsize',32)
+    title(BenchMarkName,'fontsize',32)
 	else
 	end
     %axis equal

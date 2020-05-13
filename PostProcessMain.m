@@ -15,8 +15,11 @@ M_arm02_idx = 7; M_arm04_idx = 8; M_arm12_idx = 9; M_arm14_idx = 10;
 
 
 % Load simulation data and process
-baselineFolderName = 'Baseline';
-controllerFolderName = 'VestasControl';
+% baselineFolderName = 'Baseline';
+% controllerFolderName = 'VestasControl_test';
+
+baselineFolderName = 'Baseline_Rayleigh';
+controllerFolderName = 'Baseline_Spectral';
 
 Vvec = [4 6 8 10 12 14 16 18 20];
 for l = 1:2

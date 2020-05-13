@@ -2,6 +2,7 @@
 ScaleAnimationParam = 10; % Used to scale the movement of the animation
 ShowAnimation = 1;
 AnimateBenchMark = 1;
+viewpar = 0;
 
 figure(1);
 set(1,'Units', 'Normalized', 'OuterPosition', [0 0 1 1])
@@ -11,7 +12,8 @@ AniPlotWS = 'WS12';
 BaselineName = 'Baseline';
 BenchMarkName = 'VestasControl';
 
-BaselineStruct = load(strcat('.\Results\',BaselineName,'\',AniPlotWS,'\','TurbineData.mat'))
+
+BaselineStruct = load(strcat('.\Results\',BaselineName,'\',AniPlotWS,'\','TurbineData.mat'));
 wg1_bl = BaselineStruct.Turbine_Output.Data(:,9);
 wg2_bl = BaselineStruct.Turbine_Output.Data(:,10);
 wg3_bl = BaselineStruct.Turbine_Output.Data(:,11);

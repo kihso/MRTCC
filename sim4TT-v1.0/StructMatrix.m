@@ -40,7 +40,12 @@ Ms=[(16 * LNay ^ 2 * MNac + 16 * Lhub ^ 2 * MHB) * cos(ttilt) ^ 2 / 0.4e1 + (MHB
 Ks=[ktP1 + ktP0 -ktP1 0 0 0 0 0 0 0 0; -ktP1 ktP1 0 0 0 0 0 0 0 0; 0 0 12 * EIz1 / Lt1 ^ 3 + 12 * EIz2 / Lt2 ^ 3 -12 * EIz2 / Lt2 ^ 3 -6 / Lt1 ^ 2 * EIz1 + 6 / Lt2 ^ 2 * EIz2 6 / Lt2 ^ 2 * EIz2 0 0 0 0; 0 0 -12 * EIz2 / Lt2 ^ 3 12 * EIz2 / Lt2 ^ 3 -6 / Lt2 ^ 2 * EIz2 -6 / Lt2 ^ 2 * EIz2 0 0 0 0; 0 0 -6 / Lt1 ^ 2 * EIz1 + 6 / Lt2 ^ 2 * EIz2 -6 / Lt2 ^ 2 * EIz2 ktx02 + ktx04 + 4 / Lt1 * EIz1 + 4 / Lt2 * EIz2 2 / Lt2 * EIz2 -ktx02 -ktx04 0 0; 0 0 6 / Lt2 ^ 2 * EIz2 -6 / Lt2 ^ 2 * EIz2 2 / Lt2 * EIz2 4 / Lt2 * EIz2 + ktx12 + ktx14 0 0 -ktx12 -ktx14; 0 0 0 0 -ktx02 0 ktx02 0 0 0; 0 0 0 0 -ktx04 0 0 ktx04 0 0; 0 0 0 0 0 -ktx12 0 0 ktx12 0; 0 0 0 0 0 -ktx14 0 0 0 ktx14;];
 
 %% Damping matrix
-Cs=par.alpha*Ms+par.beta*Ks;
+
+if par.Spectral_damping
+    Cs = ModalDamping(Ms,Ks,ones(size(Ms,1))*par.zeta);
+else
+    Cs=par.alpha*Ms+par.beta*Ks;
+end    
 
 %% System matrix
 A = [zeros(NDOF) eye(NDOF);

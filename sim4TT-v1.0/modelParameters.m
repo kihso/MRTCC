@@ -8,7 +8,7 @@ Rad2Deg  = 180/pi;
 par.NDOF = 10;
 
 % Damping Model
-par.Spectral_damping = o; % If 0, rayleigh damping model is chosen
+par.Spectral_damping = 0; % If 0, rayleigh damping model is chosen
 par.zeta = 0.35; % damping in % for each mode in spectral damping. Convert to logarithmic decrement by zeta*2*pi i.e. 0.3*2*pi=1.885% log dec
 
 % Geometry [m]

@@ -10,9 +10,9 @@ figure(1);
 set(1,'Units', 'Normalized', 'OuterPosition', [0 0 1 1])
 
 % Plot and Animate for Specific wind speed.
-AniPlotWS = 'WS16';
-BaselineName = 'Baseline';
-BenchMarkName = 'VestasControl';
+AniPlotWS = 'WS12';
+BaselineName = 'Baseline_Control';
+BenchMarkName = 'Vestas_Control';
 
 BaselineStruct = load(strcat('.\Results\',BaselineName,'\',AniPlotWS,'\','TurbineData.mat'));
 wg1_bl = BaselineStruct.Turbine_Output.Data(:,9);
